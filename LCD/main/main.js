@@ -1,26 +1,16 @@
-function buildNumberObject(number) {
-    number = number + '';
-    var element = number.split('');
-    var object = [{number: {value: 0, digit: ['._.', '|.|', '|_|']}},
-        {number: {value: 1, digit: ['...', '..|', '..|']}},
-        {number: {value: 2, digit: ['._.', '._|', '|_.']}},
-        {number: {value: 3, digit: ['._.', '._|', '._|']}},
-        {number: {value: 4, digit: ['...', '|_|', '..|']}},
-        {number: {value: 5, digit: ['._.', '|_.', '._|']}},
-        {number: {value: 6, digit: ['._.', '|_.', '|_|']}},
-        {number: {value: 7, digit: ['._.', '..|', '..|']}},
-        {number: {value: 8, digit: ['._.', '|_|', '|_|']}},
-        {number: {value: 9, digit: ['._.', '|_|', '..|']}},
-    ];
+function buildNumberObject(number, allNumbers) {
+    var string = number + '';
+    var elements = string.split('');
     var numberObject = [];
-    for (var i = 0; i < element.length; i++) {
-        for (var j = 0; j < object.length; j++) {
-            if (parseInt(element[i]) === object[j].number.value) {
-                numberObject.push(object[j]);
+
+    elements.forEach(function(element){
+        for (var j = 0; j < allNumbers.length; j++) {
+            if (parseInt(element) === allNumbers[j].number.value) {
+                numberObject.push(allNumbers[j]);
                 break;
             }
         }
-    }
+    });
     return numberObject;
 }
 
@@ -35,6 +25,7 @@ function print(numberObject) {
 }
 
 function buildLcd(number) {
-    var numberObject = buildNumberObject(number);
+    var allNumbers = loadAllNumbers();
+    var numberObject = buildNumberObject(number, allNumbers);
     print(numberObject);
 }

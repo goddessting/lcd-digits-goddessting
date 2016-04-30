@@ -1,37 +1,43 @@
 describe('pos', function (){
-        var inputs;
+    var inputs;
 
-        beforeEach(function () {
-            inputs = 910;
+    beforeEach(function () {
+        inputs = 910;
+    });
+
+
+    describe('Unit Test', function(){
+
+        describe('Test buildDigits', function() {
+
+            var allNumbers = [{number: {value: 8, digit: ['._.', '|_|', '|_|']}}];
+
+            it('return right numberObject', function () {
+
+                var inputs = 888;
+                var result = buildNumberObject(inputs, allNumbers);
+                var exceptResult = [{number: {value: 8, digit: ['._.', '|_|', '|_|']}},
+                                    {number: {value: 8, digit: ['._.', '|_|', '|_|']}},
+                                    {number: {value: 8, digit: ['._.', '|_|', '|_|']}}];
+
+                expect(result).toEqual(exceptResult);
+            });
         });
 
-
-        describe('Unit Test', function(){
-            describe('Test buildDigits', function() {
-                it('return right numberObject', function () {
-                    expect(buildNumberObject(inputs)).toEqual([{number: {value: 9, digit: ['._.', '|_|', '..|']}},
-                        {number: {value: 1, digit: ['...', '..|', '..|']}},
-                        {number: {value: 0, digit: ['._.', '|.|', '|_|']}}
-                    ]);
-                });
-            });
-
     });
 
+    describe('Integration test', function () {
+        it('should print correct text', function () {
 
+            spyOn(console, 'log');
 
-describe('Integration test', function () {
-    it('should print correct text', function () {
+            buildLcd(inputs);
+            var expectText =
+                '._....._.' +
+                '|_|..||.|'+
+                '..|..||_|';
 
-        spyOn(console, 'log');
-
-        buildLcd(inputs);
-        var numberObject = buildNumberObject(910);
-        var expectText = '._....._.' +
-                         '|_|..||.|'+
-                         '..|..||_|';
-
-        expect(console.log).toHaveBeenCalledWith(expectText);
+            expect(console.log).toHaveBeenCalledWith(expectText);
+        });
     });
-});
 });
