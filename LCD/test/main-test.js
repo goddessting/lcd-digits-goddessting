@@ -1,4 +1,4 @@
-describe('pos', function (){
+describe('pos', function () {
     var inputs;
 
     beforeEach(function () {
@@ -6,19 +6,32 @@ describe('pos', function (){
     });
 
 
-    describe('Unit Test', function(){
+    describe('Unit Test', function () {
 
-        describe('Test buildDigits', function() {
+        describe('Test buildDigits', function () {
 
-            var allNumbers = [{number: {value: 8, digit: ['._.', '|_|', '|_|']}}];
+            var allNumbers = [
+                ['._.', '|.|', '|_|'],
+                ['...', '..|', '..|'],
+                ['._.', '._|', '|_.'],
+                ['._.', '._|', '._|'],
+                ['...', '|_|', '..|'],
+                ['._.', '|_.', '._|'],
+                ['._.', '|_.', '|_|'],
+                ['._.', '..|', '..|'],
+                ['._.', '|_|', '|_|'],
+                ['._.', '|_|', '..|']
+            ];
 
             it('return right numberObject', function () {
 
-                var inputs = 888;
+                var inputs = 5678;
                 var result = buildNumberObject(inputs, allNumbers);
-                var exceptResult = [{number: {value: 8, digit: ['._.', '|_|', '|_|']}},
-                                    {number: {value: 8, digit: ['._.', '|_|', '|_|']}},
-                                    {number: {value: 8, digit: ['._.', '|_|', '|_|']}}];
+                var exceptResult = [['._.', '|_.', '._|'],
+                    ['._.', '|_.', '|_|'],
+                    ['._.', '..|', '..|'],
+                    ['._.', '|_|', '|_|']
+                ];
 
                 expect(result).toEqual(exceptResult);
             });
@@ -34,7 +47,7 @@ describe('pos', function (){
             buildLcd(inputs);
             var expectText =
                 '._....._.' +
-                '|_|..||.|'+
+                '|_|..||.|' +
                 '..|..||_|';
 
             expect(console.log).toHaveBeenCalledWith(expectText);
