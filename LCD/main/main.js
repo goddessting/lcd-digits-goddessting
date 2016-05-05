@@ -1,43 +1,33 @@
-function getSingleNumber(number) {
-    var string = number + '';
-    var elements = number.split('');
-
-    return elements;
+function getStringNumber(number) {
+    return number.toString().split('');
 }
 
-function getNumber(element, allNumbers, numberObject){
-
-    for (var j = 0; j < allNumbers.length; j++) {
-        if (parseInt(element) === j) {
-            numberObject.push(allNumbers[j]);
-            return numberObject;
-        }
-    }
-}
-
-function buildNumberObject(number, allNumbers) {
-    var numberObject = [];
-    var elements = getSingleNumber(number);
+function getObjectNumber(elements, allNumbers) {
+    var objectNumber = [];
 
     elements.forEach(function (element) {
-        numberObject = getNumber(element,allNumbers, numberObject);
+        objectNumber.push(allNumbers[element]);
     });
-    return numberObject;
+
+    return objectNumber;
 }
 
 function print(numberObject) {
     var print = '';
     for (var i = 0; i < numberObject[0].length; i++) {
         for (var j = 0; j < numberObject.length; j++) {
-            print += numberObject[j][i];
+            print += numberObject[j][i] + ' ';
         }
+        print += '\n';
     }
     console.log(print);
 }
 
 function buildLcd(number) {
-    var allNumbers = loadAllNumbers();
 
-    var numberObject = buildNumberObject(number, allNumbers);
-    print(numberObject);
+    var stringNumber = getStringNumber(number);
+    var allNumbers = loadAllNumbers();
+    var objectNumber = getObjectNumber(stringNumber, allNumbers);
+
+    print(objectNumber);
 }

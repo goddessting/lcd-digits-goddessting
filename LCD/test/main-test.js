@@ -8,25 +8,33 @@ describe('pos', function () {
 
     describe('Unit Test', function () {
 
-        describe('Test buildDigits', function () {
+        describe('Test getStringNumber', function(){
 
-            var allNumbers = [
-                ['._.', '|.|', '|_|'],
-                ['...', '..|', '..|'],
-                ['._.', '._|', '|_.'],
-                ['._.', '._|', '._|'],
-                ['...', '|_|', '..|'],
-                ['._.', '|_.', '._|'],
-                ['._.', '|_.', '|_|'],
-                ['._.', '..|', '..|'],
-                ['._.', '|_|', '|_|'],
-                ['._.', '|_|', '..|']
-            ];
+            it('return right stringNumber',function(){
 
-            it('return right numberObject', function () {
+                var inputs = 1234;
+                var exceptResult = getStringNumber(inputs);
 
-                var inputs = 5678;
-                var result = buildNumberObject(inputs, allNumbers);
+                var result = ['1','2','3','4'];
+
+                expect(result).toEqual(exceptResult);
+            });
+        });
+
+        describe('Test getObjectNumber', function () {
+
+            var allNumbers = {
+                5: ['._.', '|_.', '._|'],
+                6: ['._.', '|_.', '|_|'],
+                7: ['._.', '..|', '..|'],
+                8: ['._.', '|_|', '|_|']
+            };
+
+            it('return right objectNumber', function () {
+
+                var inputs = ['5','6','7','8'];
+                var result = getObjectNumber(inputs, allNumbers);
+
                 var exceptResult = [['._.', '|_.', '._|'],
                     ['._.', '|_.', '|_|'],
                     ['._.', '..|', '..|'],
@@ -46,9 +54,9 @@ describe('pos', function () {
 
             buildLcd(inputs);
             var expectText =
-                '._....._.' +
-                '|_|..||.|' +
-                '..|..||_|';
+                '._. ' + '... ' + '._. ' + '\n' +
+                '|_| ' + '..| ' + '|.| ' + '\n' +
+                '..| ' + '..| ' + '|_| ' + '\n';
 
             expect(console.log).toHaveBeenCalledWith(expectText);
         });
