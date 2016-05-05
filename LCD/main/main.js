@@ -1,6 +1,6 @@
 function getSingleNumber(number) {
     var string = number + '';
-    var elements = string.split('');
+    var elements = number.split('');
 
     return elements;
 }
@@ -14,6 +14,7 @@ function getNumber(element, allNumbers, numberObject){
         }
     }
 }
+
 function buildNumberObject(number, allNumbers) {
     var numberObject = [];
     var elements = getSingleNumber(number);
